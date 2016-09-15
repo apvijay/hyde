@@ -9,3 +9,4 @@ Computer Vision and Pattern Recognition (CVPR)
 Las Vegas, June 2016
 [Paper]("../pdf/2016_cvpr.pdf")
 [Supp]("../pdf/2016_cvpr_supp.pdf")
+[Poster]("../pdf/2016_cvpr_poster.pdf")
