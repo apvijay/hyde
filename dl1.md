@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Paper Notes - Deep Learning I
+mathjax: true
 ---
 Paper Notes - Deep Learning I
 
