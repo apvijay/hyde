@@ -25,7 +25,9 @@ The input tensor is a concatenation of four bands of frequencies different sampl
 
 ### The error
 Even though the network output is the complex deconvolution filter Fourier cofficient tensor, the backpropagation starts from the MSE of the image intensities.
-$$MSE(x_P,\hat{x}_P) = \frac{1}{|P|} \sum_{n \in P} (\hat{x}_P[n] - x_P[n])^2$$ 
+
+\\[MSE(x\_P,\hat{x}\_P) = \frac{1}{|P|} \sum\_{n \in P} (\hat{x}\_P[n] - x\_P[n])^2\\]
+
 The MSE in \\(x\\) domain is backpropagated via IDFT block \\(X\\), and then to the network output \\(G\\) via division by \\(Y\\).
 
 ## Training
@@ -35,3 +37,9 @@ The MSE in \\(x\\) domain is backpropagated via IDFT block \\(X\\), and then to 
 - The training and validation patches count: 520,000 and 3000. They use 100,000 and 3,000 motion kernels, respectively.
 - SGD with momentum 0.9. First 800k iterations have learning rate of 32 and then divided by \\(\sqrt{2}\\) after every 100k iterations.
 - Time taken : 3 days in an NVIDIA Titan X GPU
+
+## Deblurring
+- The process is convoluted. For each patch of the blurred image, a deconvolution filter is estimated using the NN and a corresponding clean patch is estimated. 
+- Each pixel of the blurred image is replaced by the corresponding pixel in a weighted combination of estimated clean patches containing that pixel. Thus, we arrive at an estimated clean image. 
+- But this is not used as the final output. This is used as an initial estimate of the latent image and a global blur kernel is estimated using the blurred and the estimated latent images. 
+- And then again, the final latent image is estimated used a state-of-the-art non-blind deconvolution of EPLL using the estimated kernel and the given blurred image.
