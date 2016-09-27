@@ -13,7 +13,10 @@ Ayan Chakrabarti, 2016
 - The image is divided into overlapping patches and each patch is processed independently by the network.
 
 ## Network architecture
-The input to the NN is a set of Fourier coefficients and not the image intensities. The input tensor is a concatenation of four bands of frequencies different sampled, L, B1, B2, and H. The L is the low pass filter, Bs are the band pass filters, and H is high pass. The higher frequencies are DFTd from a small size image and the lower are from larger size patch. 
+- Input: A set of Fourier coefficients of the input image patch  (and not the image intensities) of size 289-scalar tensor
+- Output: A set of Fourier cofficients corresponding to the deconvolution filter of size 4096-scalar tensor
+
+The input tensor is a concatenation of four bands of frequencies different sampled, L, B1, B2, and H. The L is the low pass filter, Bs are the band pass filters, and H is high pass. The higher frequencies are DFTd from a small size image and the lower are from larger size patch. 
 
 ### Frequency bands
 - L band uses the full patch size is \\(65 \times 65\\) and there are \\(40\\) complex coefficients and one DC coefficient. The total scalars is \\(81\\). The DFT indices retained are \\(max|z| < 4\\).
