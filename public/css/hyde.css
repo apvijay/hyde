@@ -32,7 +32,7 @@
  */
 
 html {
-  font-family: "PT Sans", "Open Sans", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans", "Open Sans", sans-serif;
 }
 @media (min-width: 48em) {
   html {
