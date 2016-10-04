@@ -34,5 +34,5 @@ Las Vegas, June 2016<br>
 
 ## Results
 Given a single RS image, we detect curves and estimate the row-wise camera motion modelled as a polynomial that would make them straight under angle and length constraints. Finally, the RS image is rectifed using the estimated motion. 
-![alt text](../img/rs_rect_eg_curve.png "Curve")
-![alt text](../img/rs_rect_eg_iter.png "Curve")
+![alt text](../img/rs_rect_eg_curve.png "Curve Detection")
+![alt text](../img/rs_rect_eg_iter.png "Iterations")
