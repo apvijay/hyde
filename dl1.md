@@ -5,9 +5,32 @@ mathjax: true
 ---
 Paper Notes - Deep Learning I
 
+#Learning to deblur
+Schuler
+[Paper]()
+Oct 7, 2016
+
+## Network architecture
+[Stage-1] = Input--[CNN]--[Kernel Estimation]--[Image Estimation]--Output
+- Input: Blurred image
+- CNN output: Two sets of feature images which still follow the convolution relation similar to input and output
+
+- KE input: above
+- KE output: kernel PSF
+
+- IE input: above, Input image
+- IE output: deblurred image
+
+- Output: Deblurred image
+
+[Other stages] = Input--[CNN]--[Kernel Estimation]--[Image Estimation]--Output
+- Input: Previous stage deblurred image, blurred image
+
+
 #A Neural Approach to Blind Motion Deblurring
 Ayan Chakrabarti, 2016
 [Paper](http://arxiv.org/abs/1603.04771)
+Oct 3, 2016
 
 - The output of the network is the Fourier coefficient tensor of a deconvolution filter that can be applied to the input patch to create a sharp patch.
 - The image is divided into overlapping patches and each patch is processed independently by the network.
@@ -43,3 +66,4 @@ The MSE in \\(x\\) domain is backpropagated via IDFT block \\(X\\), and then to 
 - Each pixel of the blurred image is replaced by the corresponding pixel in a weighted combination of estimated clean patches containing that pixel. Thus, we arrive at an estimated clean image. 
 - But this is not used as the final output. This is used as an initial estimate of the latent image and a global blur kernel is estimated using the blurred and the estimated latent images. 
 - And then again, the final latent image is estimated used a state-of-the-art non-blind deconvolution of EPLL using the estimated kernel and the given blurred image.
+
