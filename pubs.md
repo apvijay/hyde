@@ -8,7 +8,8 @@ Collaborators: [Abhijith Punnappurath](http://www.ee.iitm.ac.in/~ee10d038), [A.N
 1. Vijay Rengarajan, A.N.Rajagopalan, R.Aravind, and Guna Seetharaman, "Image Registration and Change Detection under Rolling Shutter Motion Blur," Accepted for publication in IEEE Transactions on Pattern Analysis and Machine Intelligence.
 
 ## Top Conferences
-__The top three computer vision conferences (CVPR, ECCV, ICCV) are highly competitive with acceptance rates about 20-25%: CVPR and ICCV have CiteSeer impact factor rankings in the top 5%, ECCV in the top 7%, of all computer science journals and conferences.__
+*The top three computer vision conferences (CVPR, ECCV, ICCV) are highly competitive with acceptance rates about 20-25%: CVPR and ICCV have CiteSeer impact factor rankings in the top 5%, ECCV in the top 7%, of all computer science journals and conferences.*
+
 1. Vijay Rengarajan, A.N. Rajagopalan, and R. Aravind, "From Bows to Arrows: Rolling Shutter Rectification of Urban Scenes," Computer Vision and Pattern Recogniton (CVPR), June 2016 [\[Paper\]](../pdf/2016_cvpr.pdf) [\[Supp\]](../pdf/2016_cvpr_supp.pdf) [\[Project page\]](../rs_rect/)
 * Abhijith Punnappurath, Vijay Rengarajan, and A.N. Rajagopalan, "Rolling Shutter Super-resolution," International Conference on Computer Vision (ICCV), Santiago, Chile, December 2015 [\[Paper\]](../pdf/2015_iccv.pdf) [\[Supp\]](../pdf/2015_iccv_supp.pdf) [\[Project page\]](http://www.ee.iitm.ac.in/~ee10d038/RSSR.html)
 * Vijay Rengarajan, A.N. Rajagopalan, and R. Aravind, "Change Detection in the Presence of Motion Blur and Rolling Shutter Effect," European Conference on Computer Vision (ECCV), Zurich, Switzerland, September 2014 [\[Paper\]](../pdf/2014_eccv.pdf) [\[Project page\]](../rs_cd/)
