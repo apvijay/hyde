@@ -5,7 +5,7 @@ title: Publications
 Collaborators: [Abhijith Punnappurath](http://www.ee.iitm.ac.in/~ee10d038), [A.N.Rajagopalan](http://www.ee.iitm.ac.in/~raju), [R.Aravind](http://www.ee.iitm.ac.in/user/aravind/), [Guna Seetharaman](http://www.cacs.louisiana.edu/~guna/), Sheetal Gupta
 
 ## Journals
-1. Vijay Rengarajan, A.N.Rajagopalan, R.Aravind, and Guna Seetharaman, "Image Registration and Change Detection under Rolling Shutter Motion Blur," IEEE Transactions on Pattern Analysis and Machine Intelligence, November 2016 [\[Paper\]](../pdf/2016_tpami.pdf)
+1. Vijay Rengarajan, A.N.Rajagopalan, R.Aravind, and Guna Seetharaman, "Image Registration and Change Detection under Rolling Shutter Motion Blur," IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI), November 2016 [\[Paper\]](../pdf/2016_tpami.pdf)
 
 ## Top Conferences
 *The top three computer vision conferences (CVPR, ECCV, ICCV) are highly competitive with acceptance rates about 20-25%: CVPR and ICCV have CiteSeer impact factor rankings in the top 5%, ECCV in the top 7%, of all computer science journals and conferences.*
