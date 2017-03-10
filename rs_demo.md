@@ -25,11 +25,11 @@ Under Construction
   Live update? <input id="t_e_live_check" type="checkbox" value="check">
   <br >
   Top to bottom row delay time
-  <input id="T_r_box" type="range" min="1" max="100" step="1" value="1">:
-  <output id="T_r_box_disp">1</output>
+  <input id="T_r_box" type="range" min="1" max="100" step="1" value="30">:
+  <output id="T_r_box_disp">30</output>
   <br >
   Poses per row exposure
-  <input id="pose_per_te_box" type="text" size = "4" value="10">.
+  <input id="pose_per_te_box" type="text" size = "4" value="5">.
   <br >
   Scene distance
   <input id="dist_box" type="text" size = "10" value="1">
@@ -82,16 +82,21 @@ var canvas = document.getElementById('canvas256');
 var ctx = canvas.getContext('2d');
 
 img.src = '../img/orig256.png';
-ctx.drawImage(img, 0, 0);
+// ctx.drawImage(img, 0, 0);
+// var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+// var img_pix = imageData.data;
+// var img_pix_orig = img_pix.slice();
 
-var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-var data = imageData.data;
-var data_orig = data.slice();
+// for (var i = 0; i < 12; i+=1) {
+//   console.log(img_pix[i]);
+// }
+// ctx.putImageData(imageData, 0,0);
 
 var reload = function() {
   ctx.drawImage(img, 0,0);
   imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  data = imageData.data;
+  img_pix = imageData.data;
+  img_pix_orig = img_pix.slice();
   ctx.putImageData(imageData, 0,0);
 }
 
@@ -137,6 +142,7 @@ document.getElementById("t_e_box").oninput = function() {
 };
 
 var rsmb_warp = function() {
+  
   var flen = Number(document.getElementById('flen_box').value);
   var t_e = Number(document.getElementById('t_e_box').value);
   var T_r = Number(document.getElementById('T_r_box').value);
@@ -219,26 +225,26 @@ var rsmb_warp = function() {
 
         if (n == 0) { 
           if (xd >=0 && yd >= 0 && xd < imageData.width && yd < imageData.height) {
-            data[4*i] = data_orig[4*j] / pose_per_te; 
-            data[4*i+1] = data_orig[4*j+1] / pose_per_te; 
-            data[4*i+2] = data_orig[4*j+2] / pose_per_te; 
+            img_pix[4*i] = img_pix_orig[4*j] / pose_per_te; 
+            img_pix[4*i+1] = img_pix_orig[4*j+1] / pose_per_te; 
+            img_pix[4*i+2] = img_pix_orig[4*j+2] / pose_per_te; 
           }
           else {
-            data[4*i] = 120 / pose_per_te;
-            data[4*i+1] = 0 / pose_per_te;
-            data[4*i+2] = 0 / pose_per_te;
+            img_pix[4*i] = 120 / pose_per_te;
+            img_pix[4*i+1] = 0 / pose_per_te;
+            img_pix[4*i+2] = 0 / pose_per_te;
           }
         } 
         else {
           if (xd >=0 && yd >= 0 && xd < imageData.width && yd < imageData.height) {
-            data[4*i] += data_orig[4*j] / pose_per_te; 
-            data[4*i+1] += data_orig[4*j+1] / pose_per_te;
-            data[4*i+2] += data_orig[4*j+2] / pose_per_te; 
+            img_pix[4*i] += img_pix_orig[4*j] / pose_per_te; 
+            img_pix[4*i+1] += img_pix_orig[4*j+1] / pose_per_te;
+            img_pix[4*i+2] += img_pix_orig[4*j+2] / pose_per_te; 
           }
           else {
-            data[4*i] += 120 / pose_per_te;
-            data[4*i+1] += 0 / pose_per_te;
-            data[4*i+2] += 0 / pose_per_te;
+            img_pix[4*i] += 120 / pose_per_te;
+            img_pix[4*i+1] += 0 / pose_per_te;
+            img_pix[4*i+2] += 0 / pose_per_te;
           }
         } // end if n == 0
        
@@ -247,6 +253,7 @@ var rsmb_warp = function() {
   } // end for y
   
   ctx.putImageData(imageData, 0,0);
+  
 }
 
 
