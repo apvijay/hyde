@@ -1,0 +1,29 @@
+canvas {
+    display:inline-block;
+    padding: 0px 0px 0px 0px;
+}
+
+#canvas256 {
+	float:left;
+}
+#canvas_exp {
+	float:right;
+}
+#canvas_mot {
+	float:right;
+}
+#buttons {
+	clear: both;
+}
+#time_params {
+	width:auto;
+    height:auto;
+	float:left;
+	display:inline-block;
+}
+#mot_params {
+	width:auto;
+    height:auto;
+	float:right;
+	display:inline-block;
+}

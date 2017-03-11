@@ -3,54 +3,55 @@ layout: page
 title: Rolling Shutter Demo
 ---
 
-Under Construction
+<!-- -------------------------------------------------------------------------- -->
 
-<!---------------------------------------------------------------------------->
-<canvas id="canvas256" width="256" height="256"></canvas><br >
+Click <i>Load Image</i> and then <i>Warping</i>. Play around with different parameters. The <i>Warping</i> button will load the new parameters and show the new output. If <i>Live update</i> is checked, the slider parameters are updated live.
+
+<canvas id="canvas256" width="256" height="256"></canvas>
 <canvas id="canvas_exp" width="512" height="128"></canvas>
 <canvas id="canvas_mot" width="512" height="128"></canvas>
-<div>
+<div id="buttons">
+  <input id="reloadbtn" value="Load Image" type="button">
   <input id="warpingbtn" value="Warping" type="button">
-  <input id="reloadbtn" value="Reload" type="button">
 <!--   <input id="drawbtn" value="Draw" type="button"> -->
+</div>
+<div id="time_params" >
   <br >
-  Middle row reference? <input id="warp_cen_check" type="checkbox" value="check">
+  <input id="warp_cen_check" type="checkbox" value="check"> Warp w.r.t. middle row <br >
+  <input id="live_check" type="checkbox" value="check" checked="true"> Live update
+  <br ><br >
+  <b>Camera Parameters</b>
   <br >
-  Camera Parameters
+  <input id="flen_box" type="range" min="1" max="1000" step="1" value="1">
+  <output id="flen_box_disp">1</output> Focal Length
   <br >
-  Live update? <input id="live_check" type="checkbox" value="check">
+  <input id="t_e_box" type="range" min="1" max="500" step="1" value="1">
+  <output id="t_e_box_disp">1</output> Row exposure time
   <br >
-  Focal Length
-  <input id="flen_box" type="range" min="1" max="1000" step="1" value="1">:
-  <output id="flen_box_disp">1</output>
+  <input id="T_r_box" type="range" min="0" max="100" step="1" value="30">
+  <output id="T_r_box_disp">30</output> Top to bottom row delay time
   <br >
-  Row exposure time
-  <input id="t_e_box" type="range" min="1" max="100" step="1" value="1">:
-  <output id="t_e_box_disp">1</output>
+  <input id="pose_per_t_e_box" type="range" min="1" max="20" step="1" value="5">
+  <output id="pose_per_t_e_box_disp">5</output> Poses per row exposure
   <br >
-  Top to bottom row delay time
-  <input id="T_r_box" type="range" min="0" max="100" step="1" value="30">:
-  <output id="T_r_box_disp">30</output>
-  <br >
-  Poses per row exposure
-  <input id="pose_per_t_e_box" type="range" min="1" max="20" step="1" value="5">:
-  <output id="pose_per_t_e_box_disp">5</output>
-  <br >
-  Scene distance
-  <input id="dist_box" type="range" min="1" max="100" step="1" value="1">:
-  <output id="dist_box_disp">1</output>
-  <br >
-  Motion simulation end time
-  <input id="T_e_box" type="range" min="1" max="1000" step="1" value="100">:
-  <output id="T_e_box_disp">100</output>
-  <br >
+  <input id="dist_box" type="range" min="1" max="100" step="1" value="1">
+  <output id="dist_box_disp">1</output> Scene distance
+  </div>
+  <div id="mot_params">
+  <b>Motion Parameters</b><br >
+  <input id="T_e_box" type="range" min="1" max="500" step="1" value="100">
+  <output id="T_e_box_disp">100</output> Motion simulation end time
+  <br ><br >
   Translations are in
   <input id="trans_unit_mm_box" type="radio" name="trans_unit_check" value="mm">mm, 
   <input id="trans_unit_pix_box" type="radio" name="trans_unit_check" value="pixel" checked="true">pixel
   <br >
-  When pixel option selected, the translation values are applied directly on the image plane and, focal length and distance to scene are ignored by them.
-  <br >
-  p0 p1 p2 p3
+  The <i>pixel</i> option translates directly on the image plane and, 
+  <br > the focal length and scene distance do not affect them.
+  <br ><br >
+  <b>Polynomial Camera Motion</b><br >
+  &nbsp; &nbsp; p0 &nbsp; &nbsp; &nbsp; p1 &nbsp; &nbsp; &nbsp; 
+  p2 &nbsp; &nbsp; &nbsp; p3
   <br >
   tx
   <input id="tx_p0_box" type="text" size = "4" value="0">
@@ -329,11 +330,11 @@ var rsmb_warp = function() {
     ctx_exp.fillRect(0, 0, 512, 128);
     // ctx_exp.clearRect(45, 45, 60, 60);
     // ctx_exp.strokeRect(50, 50, 50, 50);
-    
+    console.log(0,0, T_r * FAC, 128, (T_r+t_e) * FAC, 128, t_e * FAC, 0, 0, 0);
     ctx_exp.translate(0,0);
     ctx_exp.beginPath();
-    ctx_exp.lineTo(T_r * FAC, imageData.height);
-    ctx_exp.lineTo((T_r+t_e) * FAC, imageData.height);
+    ctx_exp.lineTo(T_r * FAC, 128);
+    ctx_exp.lineTo((T_r+t_e) * FAC, 128);
     ctx_exp.lineTo(t_e * FAC, 0);
     ctx_exp.lineTo(0, 0);
     ctx_exp.closePath();
@@ -342,7 +343,25 @@ var rsmb_warp = function() {
     ctx_exp.lineWidth = 1.0;
     //ctx_exp.lineCap = "round";
     //ctx_exp.lineJoin = "round";
-    // ctx_exp.stroke();  
+    // ctx_exp.stroke();
+
+    // ctx_exp.beginPath();
+    // ctx_exp.strokeStyle = 'rgb(150,150,150)';
+    // ctx_exp.moveTo(1,0);    
+    // ctx_exp.lineTo(1,128);
+    // ctx_exp.lineWidth = 1.0;
+
+    ctx_exp.strokeStyle = 'rgb(80,80,0)';
+    ctx_exp.fillStyle = 'rgb(150,150,150)';
+    ctx_exp.font = 'italic 12pt PT Sans';
+    ctx_exp.strokeText("0",5,25);
+    ctx_exp.strokeText("nrows",5,125);
+
+    // ctx_exp.strokeText(100,100,61);
+    // ctx_exp.strokeText(50,50,61);
+    // ctx_exp.strokeText(20,20,61);
+
+    ctx_exp.stroke();
   }
 
   canvas_mot = document.getElementById('canvas_mot');
@@ -350,12 +369,30 @@ var rsmb_warp = function() {
     ctx_mot = canvas_mot.getContext('2d');
     ctx_mot.clearRect(0, 0, 512, 128);
 
-    ctx_mot.translate(0,0);
+    // ctx_mot.translate(0,0);
 
     ctx_mot.fillStyle = 'rgb(240,240,230)';
     ctx_mot.fillRect(0, 0, 512, 128);
     ctx_mot.fillStyle = 'rgb(120,120,0)';
     
+
+    if (t_e > T_r) {
+      ctx_mot.fillStyle = 'rgb(220,220,210)';
+      ctx_mot.fillRect(0 * FAC, 0, (T_r-0) * FAC, 128-0);
+      ctx_mot.fillStyle = 'rgb(210,210,190)';
+      ctx_mot.fillRect(T_r * FAC, 0, (t_e-T_r) * FAC, 128-0);
+      ctx_mot.fillStyle = 'rgb(220,220,210)';
+      ctx_mot.fillRect(t_e * FAC, 0, (t_e+T_r-t_e) * FAC, 128-0);
+    }
+    
+    ctx_mot.beginPath();
+    ctx_mot.strokeStyle = 'rgb(150,150,150)';
+    ctx_mot.moveTo(0,64);    
+    ctx_mot.lineTo(512,64);
+    ctx_mot.lineWidth = 1.0;
+    ctx_mot.stroke();
+
+    ctx_mot.strokeStyle = 'rgb(80,80,0)';
     for (t = 0; t < T_e; t+=1) {
       tx_plot = tx_p0 + (tx_p1 * t/T_e) + (tx_p2 * Math.pow(t/T_e,2)) + (tx_p3 * Math.pow(t/T_e,3));
       tx_plot = 64 - tx_plot; // 64->0, -64->128
@@ -365,6 +402,22 @@ var rsmb_warp = function() {
       ctx_mot.closePath();
       ctx_mot.stroke();
     }
+
+
+    ctx_mot.fillStyle = 'rgb(150,150,150)';
+    ctx_mot.font = 'italic 12pt PT Sans';
+    ctx_mot.strokeText("0",5,61);
+    ctx_mot.strokeText(T_e,480,61);
+    ctx_mot.strokeText("time",480,75);
+
+    // ctx_mot.strokeText(100,100,61);
+    // ctx_mot.strokeText(50,50,61);
+    // ctx_mot.strokeText(20,20,61);
+
+    ctx_mot.stroke();
+
+    
+    
     
   }
 }
