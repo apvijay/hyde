@@ -23,8 +23,8 @@ The <i>Warping</i> button will load the parameters and show the distorted output
   <br ><br >
   <b>Camera Parameters</b>
   <br >
-  <input id="flen_box" type="range" min="1" max="1000" step="1" value="1">
-  <output id="flen_box_disp">1</output> Focal Length
+  <input id="flen_box" type="range" min="1" max="1000" step="1" value="30">
+  <output id="flen_box_disp">30</output> Focal Length
   <br >
   <input id="t_e_box" type="range" min="1" max="500" step="1" value="1">
   <output id="t_e_box_disp">1</output> Row exposure time
@@ -50,45 +50,44 @@ The <i>Warping</i> button will load the parameters and show the distorted output
   The <i>pixel</i> option translates directly on the image plane and, 
   <br > the focal length and scene distance do not affect them.
   <br ><br >
-  <b>Polynomial Camera Motion</b><br >
-  &nbsp; &nbsp; &nbsp; &nbsp; &emsp; p0 &nbsp; &nbsp; &nbsp; p1 &nbsp; &nbsp; &nbsp; 
-  p2 &nbsp; &nbsp; &nbsp; p3
-  <br >
+  <b>Polynomial Camera Motion</b> <input id="zeromotbtn" value="Zero Motion" type="button"><br >
+  <!-- &nbsp; &nbsp; &nbsp; &nbsp; &emsp; p0 &nbsp; &nbsp; &nbsp; p1 &nbsp; &nbsp; &nbsp; p2 &nbsp; &nbsp; &nbsp; p3 -->
+  <!-- <br > -->
   <p style="color:rgb(180,80,80);display:inline;">oo</p>&emsp;tx
-  <input id="tx_p0_box" type="text" size = "4" value="0">
-  <input id="tx_p1_box" type="text" size = "4" value="-100">
-  <input id="tx_p2_box" type="text" size = "4" value="-20">
-  <input id="tx_p3_box" type="text" size = "4" value="140">
+  <input id="tx_p0_box" type="range" min="-100" max="100" size = "4" value="0"> <!--<output id="tx_p0_box_disp">0</output> --> +
+  <input id="tx_p1_box" type="text" size = "4" value="-100"> t +
+  <input id="tx_p2_box" type="text" size = "4" value="-20"> t^2 +
+  <input id="tx_p3_box" type="text" size = "4" value="140"> t^3
   <br >
   <p style="color:rgb(80,180,80);display:inline;">oo</p>&emsp;ty
-  <input id="ty_p0_box" type="text" size = "4" value="0">
-  <input id="ty_p1_box" type="text" size = "4" value="0">
-  <input id="ty_p2_box" type="text" size = "4" value="0">
-  <input id="ty_p3_box" type="text" size = "4" value="0">
+    <input id="ty_p0_box" type="range" min="-100" max="100" size = "4" value="0"><!--<output id="ty_p0_box_disp">0</output>--> + 
+  <input id="ty_p1_box" type="text" size = "4" value="0"> t +
+  <input id="ty_p2_box" type="text" size = "4" value="0"> t^2 +
+  <input id="ty_p3_box" type="text" size = "4" value="0"> t^3
   <br >
   <p style="color:rgb(80,80,180);display:inline;">oo</p>&emsp;tz
-  <input id="tz_p0_box" type="text" size = "4" value="0">
-  <input id="tz_p1_box" type="text" size = "4" value="0">
-  <input id="tz_p2_box" type="text" size = "4" value="0">
-  <input id="tz_p3_box" type="text" size = "4" value="0">
+    <input id="tz_p0_box" type="range" min="-10" max="10" size = "4" value="0"><!--<output id="tz_p0_box_disp">0</output> --> + 
+  <input id="tz_p1_box" type="text" size = "4" value="0"> t +
+  <input id="tz_p2_box" type="text" size = "4" value="0"> t^2 +
+  <input id="tz_p3_box" type="text" size = "4" value="0"> t^3
   <br >
   <p style="color:rgb(180,80,80);display:inline;">---</p>&emsp;rx
-  <input id="rx_p0_box" type="text" size = "4" value="0">
-  <input id="rx_p1_box" type="text" size = "4" value="0">
-  <input id="rx_p2_box" type="text" size = "4" value="0">
-  <input id="rx_p3_box" type="text" size = "4" value="0">
+    <input id="rx_p0_box" type="range" min="-20" max="20" size = "4" value="0"><!-- <output id="rx_p0_box_disp">0</output> --> + 
+  <input id="rx_p1_box" type="text" size = "4" value="0"> t +
+  <input id="rx_p2_box" type="text" size = "4" value="0"> t^2 +
+  <input id="rx_p3_box" type="text" size = "4" value="0"> t^3
   <br >
   <p style="color:rgb(80,180,80);display:inline;">---</p>&emsp;ry
-  <input id="ry_p0_box" type="text" size = "4" value="0">
-  <input id="ry_p1_box" type="text" size = "4" value="0">
-  <input id="ry_p2_box" type="text" size = "4" value="0">
-  <input id="ry_p3_box" type="text" size = "4" value="0">
+    <input id="ry_p0_box" type="range" min="-20" max="20" size = "4" value="0"><!-- <output id="ry_p0_box_disp">0</output> --> + 
+  <input id="ry_p1_box" type="text" size = "4" value="0"> t +
+  <input id="ry_p2_box" type="text" size = "4" value="0"> t^2 +
+  <input id="ry_p3_box" type="text" size = "4" value="0"> t^3
   <br >
   <p style="color:rgb(80,80,180);display:inline;">---</p>&emsp;rz
-  <input id="rz_p0_box" type="text" size = "4" value="0">
-  <input id="rz_p1_box" type="text" size = "4" value="0">
-  <input id="rz_p2_box" type="text" size = "4" value="0">
-  <input id="rz_p3_box" type="text" size = "4" value="0">
+    <input id="rz_p0_box" type="range" min="-20" max="20" size = "4" value="0"><!-- <output id="rz_p0_box_disp">0</output> --> + 
+  <input id="rz_p1_box" type="text" size = "4" value="0"> t +
+  <input id="rz_p2_box" type="text" size = "4" value="0"> t^2 +
+  <input id="rz_p3_box" type="text" size = "4" value="0"> t^3
 </div>
 
 <script type="text/javascript">
@@ -126,6 +125,43 @@ var reload = function() {
   ctx.putImageData(imageData, 0,0);
 }
 
+var zeromot = function() {
+  document.getElementById("tx_p0_box").value = 0;
+  document.getElementById('ty_p0_box').value = 0;
+  document.getElementById('tz_p0_box').value = 0;
+  document.getElementById("rx_p0_box").value = 0;
+  document.getElementById('ry_p0_box').value = 0;
+  document.getElementById('rz_p0_box').value = 0;
+
+  document.getElementById("tx_p1_box").value = 0;
+  document.getElementById('ty_p1_box').value = 0;
+  document.getElementById('tz_p1_box').value = 0;
+  document.getElementById("rx_p1_box").value = 0;
+  document.getElementById('ry_p1_box').value = 0;
+  document.getElementById('rz_p1_box').value = 0;
+
+  document.getElementById("tx_p2_box").value = 0;
+  document.getElementById('ty_p2_box').value = 0;
+  document.getElementById('tz_p2_box').value = 0;
+  document.getElementById("rx_p2_box").value = 0;
+  document.getElementById('ry_p2_box').value = 0;
+  document.getElementById('rz_p2_box').value = 0;
+
+  document.getElementById("tx_p3_box").value = 0;
+  document.getElementById('ty_p3_box').value = 0;
+  document.getElementById('tz_p3_box').value = 0;
+  document.getElementById("rx_p3_box").value = 0;
+  document.getElementById('ry_p3_box').value = 0;
+  document.getElementById('rz_p3_box').value = 0;
+
+  // document.getElementById('tx_p0_box_disp').innerHTML = 0;
+  // document.getElementById('ty_p0_box_disp').innerHTML = 0;
+  // document.getElementById('tz_p0_box_disp').innerHTML = 0;
+  // document.getElementById('rx_p0_box_disp').innerHTML = 0;
+  // document.getElementById('ry_p0_box_disp').innerHTML = 0;
+  // document.getElementById('rz_p0_box_disp').innerHTML = 0;
+
+}
 function getPixelIndex(x, y) {
   return y*imageData.width + x;
 }
@@ -156,7 +192,7 @@ var get_homo = function(flen,dist,tx,ty,tz,rx,ry,rz) {
   H[1] = cx * sz - sx * sy * cz;
   H[4] = cx * cz + sx * sy * sz;
   
-  H[2] = (sx * sz + cx * sy * sz) / flen;
+  H[2] = (sx * sz + cx * sy * cz) / flen;
   H[5] = (sx * cz - cx * sy * sz) / flen;
   
   return H;
@@ -205,6 +241,48 @@ document.getElementById("T_e_box").oninput = function() {
   }
 };
 
+document.getElementById("tx_p0_box").oninput = function() {
+  // val = document.getElementById("tx_p0_box").value;
+  // document.getElementById('tx_p0_box_disp').innerHTML = val;
+  if(document.getElementById('live_check').checked == true) {
+    rsmb_warp();
+  }
+};
+document.getElementById("ty_p0_box").oninput = function() {
+  // val = document.getElementById("ty_p0_box").value;
+  // document.getElementById('ty_p0_box_disp').innerHTML = val;
+  if(document.getElementById('live_check').checked == true) {
+    rsmb_warp();
+  }
+};
+document.getElementById("tz_p0_box").oninput = function() {
+  // val = document.getElementById("tz_p0_box").value;
+  // document.getElementById('tz_p0_box_disp').innerHTML = val;
+  if(document.getElementById('live_check').checked == true) {
+    rsmb_warp();
+  }
+};
+document.getElementById("rx_p0_box").oninput = function() {
+  // val = document.getElementById("rx_p0_box").value;
+  // document.getElementById('rx_p0_box_disp').innerHTML = val;
+  if(document.getElementById('live_check').checked == true) {
+    rsmb_warp();
+  }
+};
+document.getElementById("ry_p0_box").oninput = function() {
+  // val = document.getElementById("ry_p0_box").value;
+  // document.getElementById('ry_p0_box_disp').innerHTML = val;
+  if(document.getElementById('live_check').checked == true) {
+    rsmb_warp();
+  }
+};
+document.getElementById("rz_p0_box").oninput = function() {
+  // val = document.getElementById("rz_p0_box").value;
+  // document.getElementById('rz_p0_box_disp').innerHTML = val;
+  if(document.getElementById('live_check').checked == true) {
+    rsmb_warp();
+  }
+};
 
 var rsmb_warp = function() {
   // exp_draw();
@@ -330,7 +408,7 @@ var rsmb_warp = function() {
     ctx_exp = canvas_exp.getContext('2d');
     ctx_exp.clearRect(0, 0, canvas_mot_width, 128);
 
-    ctx_exp.fillStyle = 'rgb(240,240,180)';
+    ctx_exp.fillStyle = 'rgb(240,240,210)';
     ctx_exp.fillRect(0, 0, canvas_mot_width, 128);
     // ctx_exp.clearRect(45, 45, 60, 60);
     // ctx_exp.strokeRect(50, 50, 50, 50);
@@ -359,10 +437,11 @@ var rsmb_warp = function() {
 
     ctx_exp.strokeStyle = 'rgb(80,80,0)';
     ctx_exp.fillStyle = 'rgb(150,150,150)';
-    ctx_exp.font = 'italic 12pt PT Sans';
-    ctx_exp.strokeText("0",5,25);
-    ctx_exp.strokeText("nrows",5,125);
-
+    ctx_exp.font = 'italic 10pt PT Sans';
+    ctx_exp.strokeText("top row",15,15);
+    ctx_exp.strokeText("bot row",15,125);
+    ctx_exp.font = '12pt PT Sans';
+    ctx_exp.strokeText("Exposure",canvas_mot_width/2-30,15);
     // ctx_exp.strokeText(100,100,61);
     // ctx_exp.strokeText(50,50,61);
     // ctx_exp.strokeText(20,20,61);
@@ -441,9 +520,9 @@ var rsmb_warp = function() {
     ctx_mot.moveTo(0,64);
     for (t = 0; t < T_e; t+=1) {
       rx_plot = rx_p0 + (rx_p1 * t/T_e) + (rx_p2 * Math.pow(t/T_e,2)) + (rx_p3 * Math.pow(t/T_e,3));
-      rx_plot = 64 - rx_plot; // 64->0, -64->128
+      rx_plot = 64 - rx_plot*64/20; // 20->0, 0->64, -20->128 //  64->0, -64->128
       // ctx_mot.lineTo(t * FAC, tx_plot);
-      ctx_mot.arc(t * FAC, rx_plot*20/64, 0.4, 0, Math.PI * 2, true);   
+      ctx_mot.arc(t * FAC, rx_plot, 0.4, 0, Math.PI * 2, true);   
       // ctx_mot.lineWidth = 1.0;
       // ctx_mot.closePath();  
     }
@@ -454,9 +533,9 @@ var rsmb_warp = function() {
     ctx_mot.moveTo(0,64);
     for (t = 0; t < T_e; t+=1) {
       ry_plot = ry_p0 + (ry_p1 * t/T_e) + (ry_p2 * Math.pow(t/T_e,2)) + (ry_p3 * Math.pow(t/T_e,3));
-      ry_plot = 64 - ry_plot; // 64->0, -64->128
+      ry_plot = 64 - ry_plot*64/20; // 64->0, -64->128
       // ctx_mot.lineTo(t * FAC, tx_plot);
-      ctx_mot.arc(t * FAC, ry_plot*20/64, 0.4, 0, Math.PI * 2, true);   
+      ctx_mot.arc(t * FAC, ry_plot, 0.4, 0, Math.PI * 2, true);   
       ctx_mot.lineWidth = 1.0;
       // ctx_mot.closePath();      
     }
@@ -467,32 +546,40 @@ var rsmb_warp = function() {
     ctx_mot.moveTo(0,64);
     for (t = 0; t < T_e; t+=1) {
       rz_plot = rz_p0 + (rz_p1 * t/T_e) + (rz_p2 * Math.pow(t/T_e,2)) + (rz_p3 * Math.pow(t/T_e,3));
-      rz_plot = 64 - rz_plot; // 64->0, -64->128     
-      ctx_mot.arc(t * FAC, rz_plot*20/64, 0.4, 0, Math.PI * 2, true);
+      rz_plot = 64 - rz_plot*64/20; // 64->0, -64->128     
+      ctx_mot.arc(t * FAC, rz_plot, 0.4, 0, Math.PI * 2, true);
       // cts_mot.lineTo(t*FAC,rz_plot);
       ctx_mot.lineWidth = 1.0;
       // ctx_mot.closePath();
     }
     ctx_mot.stroke();
 
-
+    ctx_mot.moveTo(0,64);
     ctx_mot.strokeStyle = 'rgb(150,150,150)';
     ctx_mot.font = 'italic 12pt PT Sans';
     ctx_mot.strokeText("0",5,61);
     ctx_mot.strokeText(T_e,canvas_mot_width-30,61);
     ctx_mot.strokeText("time",canvas_mot_width-30,75);
-
     // ctx_mot.strokeText(100,100,61);
     // ctx_mot.strokeText(50,50,61);
     // ctx_mot.strokeText(20,20,61);
-
     ctx_mot.stroke();
 
+    ctx_mot.moveTo(0,64);
     ctx_mot.font = 'italic 10pt PT Sans';
-    ctx_mot.strokeText("64",5,15);
-    ctx_mot.strokeText("-64",5,120);
+    if(document.getElementById('trans_unit_pix_box').checked == true) {
+      ctx_mot.strokeText("64pix",5,15);
+      ctx_mot.strokeText("-64pix",5,120);
+    }
+    else {
+      ctx_mot.strokeText("64mm",5,15);
+      ctx_mot.strokeText("-64mm",5,120);
+    }
+    
     ctx_mot.strokeText("20\u00B0",canvas_mot_width-30,15);
     ctx_mot.strokeText("-20\u00B0",canvas_mot_width-30,120);
+    ctx_mot.font = '12pt PT Sans';
+    ctx_mot.strokeText("Camera Motion",canvas_mot_width/2-50,15);
     ctx_mot.stroke();
     
   }
@@ -505,6 +592,8 @@ var reloadbtn = document.getElementById('reloadbtn');
 reloadbtn.addEventListener('click', reload);
 // var drawbtn = document.getElementById('drawbtn');
 // drawbtn.addEventListener('click', exp_draw);
+var zeromotbtn = document.getElementById('zeromotbtn');
+zeromotbtn.addEventListener('click', zeromot);
 </script>
 
 

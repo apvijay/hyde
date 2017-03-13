@@ -27,3 +27,6 @@ canvas {
 	float:right;
 	display:inline-block;
 }
+output {
+	width:120px;
+}
