@@ -5,13 +5,14 @@ title: Rolling Shutter Demo
 
 <!-- -------------------------------------------------------------------------- -->
 
-Click <i>Load Image</i> and then <i>Warping</i>. Play around with different parameters. The <i>Warping</i> button will load the new parameters and show the new output. If <i>Live update</i> is checked, the slider parameters are updated live.
+<!-- Click <i>Load Image</i> and then <i>Warping</i>. Play around with different parameters.  -->
+The <i>Warping</i> button will load the parameters and show the distorted output as captured by a rolling shutter camera. If <i>Live update</i> is checked, the slider parameters are updated live. The <i>Reload Image</i> button will show the original undistorted image.
 
 <canvas id="canvas256" width="256" height="256"></canvas>
 <canvas id="canvas_exp" width="384" height="128"></canvas>
 <canvas id="canvas_mot" width="384" height="128"></canvas>
 <div id="buttons">
-  <input id="reloadbtn" value="Load Image" type="button">
+  <input id="reloadbtn" value="Reload Image" type="button">
   <input id="warpingbtn" value="Warping" type="button">
 <!--   <input id="drawbtn" value="Draw" type="button"> -->
 </div>
@@ -71,19 +72,19 @@ Click <i>Load Image</i> and then <i>Warping</i>. Play around with different para
   <input id="tz_p2_box" type="text" size = "4" value="0">
   <input id="tz_p3_box" type="text" size = "4" value="0">
   <br >
-  <p style="color:rgb(180,80,80);display:inline;">-- </p>&emsp;rx
+  <p style="color:rgb(180,80,80);display:inline;">---</p>&emsp;rx
   <input id="rx_p0_box" type="text" size = "4" value="0">
   <input id="rx_p1_box" type="text" size = "4" value="0">
   <input id="rx_p2_box" type="text" size = "4" value="0">
   <input id="rx_p3_box" type="text" size = "4" value="0">
   <br >
-  <p style="color:rgb(80,180,80);display:inline;">-- </p>&emsp;ry
+  <p style="color:rgb(80,180,80);display:inline;">---</p>&emsp;ry
   <input id="ry_p0_box" type="text" size = "4" value="0">
   <input id="ry_p1_box" type="text" size = "4" value="0">
   <input id="ry_p2_box" type="text" size = "4" value="0">
   <input id="ry_p3_box" type="text" size = "4" value="0">
   <br >
-  <p style="color:rgb(80,80,180);display:inline;">-- </p>&emsp;rz
+  <p style="color:rgb(80,80,180);display:inline;">---</p>&emsp;rz
   <input id="rz_p0_box" type="text" size = "4" value="0">
   <input id="rz_p1_box" type="text" size = "4" value="0">
   <input id="rz_p2_box" type="text" size = "4" value="0">
@@ -108,6 +109,8 @@ img.src = '../img/orig256.png';
 //   console.log(img_pix[i]);
 // }
 // ctx.putImageData(imageData, 0,0);
+
+  document.getElementById('canvas256').addEventListener("load", reload);
 
   ctx.drawImage(img, 0,0);
   imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -333,15 +336,17 @@ var rsmb_warp = function() {
     // ctx_exp.strokeRect(50, 50, 50, 50);
     console.log(0,0, T_r * FAC, 128, (T_r+t_e) * FAC, 128, t_e * FAC, 0, 0, 0);
     ctx_exp.translate(0,0);
+    ctx_exp.strokeStyle = "rgb(180, 170, 120)";
+    ctx_exp.fillStyle = "rgb(180, 170, 120)";
     ctx_exp.beginPath();
     ctx_exp.lineTo(T_r * FAC, 128);
     ctx_exp.lineTo((T_r+t_e) * FAC, 128);
     ctx_exp.lineTo(t_e * FAC, 0);
     ctx_exp.lineTo(0, 0);
     ctx_exp.closePath();
-    ctx_exp.fillStyle = "rgb(150, 120, 80)";
+    ctx_exp.fillStyle = "rgb(180, 170, 120)";
     ctx_exp.fill();
-    ctx_exp.lineWidth = 1.0;
+    // ctx_exp.lineWidth = 1.0;
     //ctx_exp.lineCap = "round";
     //ctx_exp.lineJoin = "round";
     // ctx_exp.stroke();
@@ -396,6 +401,14 @@ var rsmb_warp = function() {
     
     for (t = 0; t < T_e; t+=1) {
       tx_plot = tx_p0 + (tx_p1 * t/T_e) + (tx_p2 * Math.pow(t/T_e,2)) + (tx_p3 * Math.pow(t/T_e,3));
+      if (t == 0) {
+        tx_max_plot = tx_plot;
+        tx_min_plot = tx_plot;
+      }
+      else {
+        if (tx_plot > tx_max_plot) tx_max_plot = tx_plot;
+        if (tx_plot < tx_min_plot) tx_min_plot = tx_plot;
+      }
       tx_plot = 64 - tx_plot; // 64->0, -64->128
       ctx_mot.strokeStyle = 'rgb(180,80,80)';
       ctx_mot.beginPath();
@@ -430,7 +443,7 @@ var rsmb_warp = function() {
       rx_plot = rx_p0 + (rx_p1 * t/T_e) + (rx_p2 * Math.pow(t/T_e,2)) + (rx_p3 * Math.pow(t/T_e,3));
       rx_plot = 64 - rx_plot; // 64->0, -64->128
       // ctx_mot.lineTo(t * FAC, tx_plot);
-      ctx_mot.arc(t * FAC, rx_plot, 0.4, 0, Math.PI * 2, true);   
+      ctx_mot.arc(t * FAC, rx_plot*20/64, 0.4, 0, Math.PI * 2, true);   
       // ctx_mot.lineWidth = 1.0;
       // ctx_mot.closePath();  
     }
@@ -443,7 +456,7 @@ var rsmb_warp = function() {
       ry_plot = ry_p0 + (ry_p1 * t/T_e) + (ry_p2 * Math.pow(t/T_e,2)) + (ry_p3 * Math.pow(t/T_e,3));
       ry_plot = 64 - ry_plot; // 64->0, -64->128
       // ctx_mot.lineTo(t * FAC, tx_plot);
-      ctx_mot.arc(t * FAC, ry_plot, 0.4, 0, Math.PI * 2, true);   
+      ctx_mot.arc(t * FAC, ry_plot*20/64, 0.4, 0, Math.PI * 2, true);   
       ctx_mot.lineWidth = 1.0;
       // ctx_mot.closePath();      
     }
@@ -455,7 +468,7 @@ var rsmb_warp = function() {
     for (t = 0; t < T_e; t+=1) {
       rz_plot = rz_p0 + (rz_p1 * t/T_e) + (rz_p2 * Math.pow(t/T_e,2)) + (rz_p3 * Math.pow(t/T_e,3));
       rz_plot = 64 - rz_plot; // 64->0, -64->128     
-      ctx_mot.arc(t * FAC, rz_plot, 0.4, 0, Math.PI * 2, true);
+      ctx_mot.arc(t * FAC, rz_plot*20/64, 0.4, 0, Math.PI * 2, true);
       // cts_mot.lineTo(t*FAC,rz_plot);
       ctx_mot.lineWidth = 1.0;
       // ctx_mot.closePath();
@@ -475,8 +488,12 @@ var rsmb_warp = function() {
 
     ctx_mot.stroke();
 
-    
-    
+    ctx_mot.font = 'italic 10pt PT Sans';
+    ctx_mot.strokeText("64",5,15);
+    ctx_mot.strokeText("-64",5,120);
+    ctx_mot.strokeText("20\u00B0",canvas_mot_width-30,15);
+    ctx_mot.strokeText("-20\u00B0",canvas_mot_width-30,120);
+    ctx_mot.stroke();
     
   }
 }
