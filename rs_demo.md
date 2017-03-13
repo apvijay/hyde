@@ -8,8 +8,8 @@ title: Rolling Shutter Demo
 Click <i>Load Image</i> and then <i>Warping</i>. Play around with different parameters. The <i>Warping</i> button will load the new parameters and show the new output. If <i>Live update</i> is checked, the slider parameters are updated live.
 
 <canvas id="canvas256" width="256" height="256"></canvas>
-<canvas id="canvas_exp" width="512" height="128"></canvas>
-<canvas id="canvas_mot" width="512" height="128"></canvas>
+<canvas id="canvas_exp" width="384" height="128"></canvas>
+<canvas id="canvas_mot" width="384" height="128"></canvas>
 <div id="buttons">
   <input id="reloadbtn" value="Load Image" type="button">
   <input id="warpingbtn" value="Warping" type="button">
@@ -50,40 +50,40 @@ Click <i>Load Image</i> and then <i>Warping</i>. Play around with different para
   <br > the focal length and scene distance do not affect them.
   <br ><br >
   <b>Polynomial Camera Motion</b><br >
-  &nbsp; &nbsp; p0 &nbsp; &nbsp; &nbsp; p1 &nbsp; &nbsp; &nbsp; 
+  &nbsp; &nbsp; &nbsp; &nbsp; &emsp; p0 &nbsp; &nbsp; &nbsp; p1 &nbsp; &nbsp; &nbsp; 
   p2 &nbsp; &nbsp; &nbsp; p3
   <br >
-  tx
+  <p style="color:rgb(180,80,80);display:inline;">oo</p>&emsp;tx
   <input id="tx_p0_box" type="text" size = "4" value="0">
   <input id="tx_p1_box" type="text" size = "4" value="-100">
   <input id="tx_p2_box" type="text" size = "4" value="-20">
   <input id="tx_p3_box" type="text" size = "4" value="140">
   <br >
-  ty
+  <p style="color:rgb(80,180,80);display:inline;">oo</p>&emsp;ty
   <input id="ty_p0_box" type="text" size = "4" value="0">
   <input id="ty_p1_box" type="text" size = "4" value="0">
   <input id="ty_p2_box" type="text" size = "4" value="0">
   <input id="ty_p3_box" type="text" size = "4" value="0">
   <br >
-  tz
+  <p style="color:rgb(80,80,180);display:inline;">oo</p>&emsp;tz
   <input id="tz_p0_box" type="text" size = "4" value="0">
   <input id="tz_p1_box" type="text" size = "4" value="0">
   <input id="tz_p2_box" type="text" size = "4" value="0">
   <input id="tz_p3_box" type="text" size = "4" value="0">
   <br >
-  rx
+  <p style="color:rgb(180,80,80);display:inline;">-- </p>&emsp;rx
   <input id="rx_p0_box" type="text" size = "4" value="0">
   <input id="rx_p1_box" type="text" size = "4" value="0">
   <input id="rx_p2_box" type="text" size = "4" value="0">
   <input id="rx_p3_box" type="text" size = "4" value="0">
   <br >
-  ry
+  <p style="color:rgb(80,180,80);display:inline;">-- </p>&emsp;ry
   <input id="ry_p0_box" type="text" size = "4" value="0">
   <input id="ry_p1_box" type="text" size = "4" value="0">
   <input id="ry_p2_box" type="text" size = "4" value="0">
   <input id="ry_p3_box" type="text" size = "4" value="0">
   <br >
-  rz
+  <p style="color:rgb(80,80,180);display:inline;">-- </p>&emsp;rz
   <input id="rz_p0_box" type="text" size = "4" value="0">
   <input id="rz_p1_box" type="text" size = "4" value="0">
   <input id="rz_p2_box" type="text" size = "4" value="0">
@@ -319,15 +319,16 @@ var rsmb_warp = function() {
   } // end for y
   
   ctx.putImageData(imageData, 0,0);
-  
-  FAC = 512 / T_e;
+
+  canvas_mot_width = 384;
+  FAC = canvas_mot_width / T_e;
   canvas_exp = document.getElementById('canvas_exp');
   if (canvas_exp.getContext) {
     ctx_exp = canvas_exp.getContext('2d');
-    ctx_exp.clearRect(0, 0, 512, 128);
+    ctx_exp.clearRect(0, 0, canvas_mot_width, 128);
 
     ctx_exp.fillStyle = 'rgb(240,240,180)';
-    ctx_exp.fillRect(0, 0, 512, 128);
+    ctx_exp.fillRect(0, 0, canvas_mot_width, 128);
     // ctx_exp.clearRect(45, 45, 60, 60);
     // ctx_exp.strokeRect(50, 50, 50, 50);
     console.log(0,0, T_r * FAC, 128, (T_r+t_e) * FAC, 128, t_e * FAC, 0, 0, 0);
@@ -363,16 +364,16 @@ var rsmb_warp = function() {
 
     ctx_exp.stroke();
   }
-
+  
   canvas_mot = document.getElementById('canvas_mot');
   if (canvas_mot.getContext) {
     ctx_mot = canvas_mot.getContext('2d');
-    ctx_mot.clearRect(0, 0, 512, 128);
+    ctx_mot.clearRect(0, 0, canvas_mot_width, 128);
 
     // ctx_mot.translate(0,0);
 
     ctx_mot.fillStyle = 'rgb(240,240,230)';
-    ctx_mot.fillRect(0, 0, 512, 128);
+    ctx_mot.fillRect(0, 0, canvas_mot_width, 128);
     ctx_mot.fillStyle = 'rgb(120,120,0)';
     
 
@@ -388,27 +389,85 @@ var rsmb_warp = function() {
     ctx_mot.beginPath();
     ctx_mot.strokeStyle = 'rgb(150,150,150)';
     ctx_mot.moveTo(0,64);    
-    ctx_mot.lineTo(512,64);
+    ctx_mot.lineTo(canvas_mot_width,64);
     ctx_mot.lineWidth = 1.0;
     ctx_mot.stroke();
 
-    ctx_mot.strokeStyle = 'rgb(80,80,0)';
+    
     for (t = 0; t < T_e; t+=1) {
       tx_plot = tx_p0 + (tx_p1 * t/T_e) + (tx_p2 * Math.pow(t/T_e,2)) + (tx_p3 * Math.pow(t/T_e,3));
       tx_plot = 64 - tx_plot; // 64->0, -64->128
+      ctx_mot.strokeStyle = 'rgb(180,80,80)';
       ctx_mot.beginPath();
       // ctx_mot.lineTo(t * FAC, tx_plot);
-      ctx_mot.arc(t * FAC, tx_plot, 0.5, 0, Math.PI * 2, true);   
+      ctx_mot.arc(t * FAC, tx_plot, 1.2, 0, Math.PI * 2, true);   
+      ctx_mot.closePath();
+      ctx_mot.stroke();
+
+      ty_plot = ty_p0 + (ty_p1 * t/T_e) + (ty_p2 * Math.pow(t/T_e,2)) + (ty_p3 * Math.pow(t/T_e,3));
+      ty_plot = 64 - ty_plot; // 64->0, -64->128
+      ctx_mot.strokeStyle = 'rgb(80,180,80)';
+      ctx_mot.beginPath();
+      // ctx_mot.lineTo(t * FAC, tx_plot);
+      ctx_mot.arc(t * FAC, ty_plot, 1.2, 0, Math.PI * 2, true);   
+      ctx_mot.closePath();
+      ctx_mot.stroke();
+
+      tz_plot = tz_p0 + (tz_p1 * t/T_e) + (tz_p2 * Math.pow(t/T_e,2)) + (tz_p3 * Math.pow(t/T_e,3));
+      tz_plot = 64 - tz_plot; // 64->0, -64->128
+      ctx_mot.strokeStyle = 'rgb(80,80,180)';
+      ctx_mot.beginPath();
+      // ctx_mot.lineTo(t * FAC, tx_plot);
+      ctx_mot.arc(t * FAC, tz_plot, 1.2, 0, Math.PI * 2, true);   
       ctx_mot.closePath();
       ctx_mot.stroke();
     }
 
+    ctx_mot.beginPath();
+    ctx_mot.strokeStyle = 'rgb(180,80,80)';
+    ctx_mot.moveTo(0,64);
+    for (t = 0; t < T_e; t+=1) {
+      rx_plot = rx_p0 + (rx_p1 * t/T_e) + (rx_p2 * Math.pow(t/T_e,2)) + (rx_p3 * Math.pow(t/T_e,3));
+      rx_plot = 64 - rx_plot; // 64->0, -64->128
+      // ctx_mot.lineTo(t * FAC, tx_plot);
+      ctx_mot.arc(t * FAC, rx_plot, 0.4, 0, Math.PI * 2, true);   
+      // ctx_mot.lineWidth = 1.0;
+      // ctx_mot.closePath();  
+    }
+    ctx_mot.stroke();
 
-    ctx_mot.fillStyle = 'rgb(150,150,150)';
+    ctx_mot.beginPath();
+    ctx_mot.strokeStyle = 'rgb(80,180,80)';
+    ctx_mot.moveTo(0,64);
+    for (t = 0; t < T_e; t+=1) {
+      ry_plot = ry_p0 + (ry_p1 * t/T_e) + (ry_p2 * Math.pow(t/T_e,2)) + (ry_p3 * Math.pow(t/T_e,3));
+      ry_plot = 64 - ry_plot; // 64->0, -64->128
+      // ctx_mot.lineTo(t * FAC, tx_plot);
+      ctx_mot.arc(t * FAC, ry_plot, 0.4, 0, Math.PI * 2, true);   
+      ctx_mot.lineWidth = 1.0;
+      // ctx_mot.closePath();      
+    }
+    ctx_mot.stroke();
+
+    ctx_mot.beginPath();
+    ctx_mot.strokeStyle = 'rgb(80,80,180)';
+    ctx_mot.moveTo(0,64);
+    for (t = 0; t < T_e; t+=1) {
+      rz_plot = rz_p0 + (rz_p1 * t/T_e) + (rz_p2 * Math.pow(t/T_e,2)) + (rz_p3 * Math.pow(t/T_e,3));
+      rz_plot = 64 - rz_plot; // 64->0, -64->128     
+      ctx_mot.arc(t * FAC, rz_plot, 0.4, 0, Math.PI * 2, true);
+      // cts_mot.lineTo(t*FAC,rz_plot);
+      ctx_mot.lineWidth = 1.0;
+      // ctx_mot.closePath();
+    }
+    ctx_mot.stroke();
+
+
+    ctx_mot.strokeStyle = 'rgb(150,150,150)';
     ctx_mot.font = 'italic 12pt PT Sans';
     ctx_mot.strokeText("0",5,61);
-    ctx_mot.strokeText(T_e,480,61);
-    ctx_mot.strokeText("time",480,75);
+    ctx_mot.strokeText(T_e,canvas_mot_width-30,61);
+    ctx_mot.strokeText("time",canvas_mot_width-30,75);
 
     // ctx_mot.strokeText(100,100,61);
     // ctx_mot.strokeText(50,50,61);
