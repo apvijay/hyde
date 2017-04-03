@@ -5,7 +5,8 @@ title: Publications
 Collaborators: [Abhijith Punnappurath](http://www.ee.iitm.ac.in/~ee10d038), [A.N.Rajagopalan](http://www.ee.iitm.ac.in/~raju), [R.Aravind](http://www.ee.iitm.ac.in/user/aravind/), [Guna Seetharaman](http://www.cacs.louisiana.edu/~guna/), Sheetal Gupta, Yogesh Balaji
 
  <script src="http://bibbase.org/show?bib=apvijay.github.io/apvijay.bib&jsonp=1"></script> 
- 
+
+<!--
 ## Journals
 1. Vijay Rengarajan, A.N.Rajagopalan, R.Aravind, and Guna Seetharaman, "Image Registration and Change Detection under Rolling Shutter Motion Blur," IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI), November 2016 [\[Paper\]](../pdf/2016_tpami.pdf)
 
@@ -22,3 +23,4 @@ Collaborators: [Abhijith Punnappurath](http://www.ee.iitm.ac.in/~ee10d038), [A.N
 * Vijay Rengarajan, Sheetal B. Gupta, A.N. Rajagopalan, and Guna Seetharaman, "Illumination Robust Change Detection with CMOS Imaging Sensors," SPIE Defense + Security Symposium, International Society for Optics and Photonics, Baltimore, Maryland, USA, April 2015 [\[Paper\]](../pdf/2015_spie.pdf) [\[Project page\]](../rs_cd/)
 * Vijay Rengarajan, A.N. Rajagopalan, and R. Aravind, "Motion Estimation and Classification in Compressive Sensing from Dynamic Measurements," International Conference on Pattern Recognition (ICPR), Stockholm, Sweden, August 2014 [\[Paper\]](../pdf/2014_icpr.pdf) [\[Project page\]](../cs_mot/)
 * Vijay Rengarajan, Abhijith Punnappurath, A.N. Rajagopalan, and Guna Seetharaman, "Efficient Change Detection for Very Large Motion Blurred Images," CVPR Workshop on Registration of Very Large Images, Columbus, Ohio, USA, June 2014 [\[PDF\]](../pdf/2014_cvprw.pdf) [\[Project page\]](../gs_mb/)
+-->
