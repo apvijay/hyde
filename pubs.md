@@ -4,7 +4,7 @@ title: Publications
 ---
 Collaborators: [Abhijith Punnappurath](http://www.ee.iitm.ac.in/~ee10d038), [A.N.Rajagopalan](http://www.ee.iitm.ac.in/~raju), [R.Aravind](http://www.ee.iitm.ac.in/user/aravind/), [Guna Seetharaman](http://www.cacs.louisiana.edu/~guna/), Sheetal Gupta, Yogesh Balaji
 
- <script src="http://bibbase.org/show?bib=../apvijay.bib&jsonp=1"></script> 
+ <script src="http://bibbase.org/show?bib=http://apvijay.github.io/apvijay.bib&jsonp=1"></script> 
  
 ## Journals
 1. Vijay Rengarajan, A.N.Rajagopalan, R.Aravind, and Guna Seetharaman, "Image Registration and Change Detection under Rolling Shutter Motion Blur," IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI), November 2016 [\[Paper\]](../pdf/2016_tpami.pdf)
