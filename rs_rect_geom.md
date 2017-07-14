@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Rolling Shutter Rectification
+title: Geometry-based Rolling Shutter Rectification
 ---
 
 ## Abstract
