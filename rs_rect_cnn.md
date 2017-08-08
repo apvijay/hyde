@@ -13,6 +13,12 @@ Computer Vision and Pattern Recognition (CVPR)<br>
 Honolulu, July 2017<br>
 [Paper](../pdf/2017_cvpr.pdf) [Supplementary](../pdf/2017_cvpr_supp.pdf) [Poster](../pdf/2017_cvpr_poster.pdf)
 
+## Code
+Coming soon
+
+## Data
+[Test Dataset (Building, Face, Synthetic Motion)](https://drive.google.com/file/d/0B7YA7kky_NEoUXhXX0NNRTdqUlU/view?usp=sharing)
+
 ## Results
 Given a single rolling shutter distorted image, our RowColCNN maps it to camera motion which is used to rectify the distortions.
 ![alt text](../img/rs_rect_cnn_eg.png "Examples")
