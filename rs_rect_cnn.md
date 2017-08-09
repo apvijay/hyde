@@ -17,6 +17,8 @@ Honolulu, July 2017<br>
 Coming soon
 
 ## Data
+[Building Training Dataset](https://drive.google.com/file/d/0B7YA7kky_NEoMEYwbmVDRTlObVk/view?usp=drivesdk)
+
 [Test Dataset (Building, Face, Synthetic Motion)](https://drive.google.com/file/d/0B7YA7kky_NEoUXhXX0NNRTdqUlU/view?usp=sharing)
 
 ## Results
