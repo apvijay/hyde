@@ -19,6 +19,8 @@ Coming soon
 ## Data
 [Building Training Dataset](https://drive.google.com/file/d/0B7YA7kky_NEoMEYwbmVDRTlObVk/view?usp=drivesdk)
 
+[Face Training Dataset](https://drive.google.com/file/d/0B-BktWYrL0qcVlRIRVJEeW9LZ2s/view?usp=sharing)
+
 [Test Dataset (Building, Face, Synthetic Motion)](https://drive.google.com/file/d/0B7YA7kky_NEoUXhXX0NNRTdqUlU/view?usp=sharing)
 
 ## Results
