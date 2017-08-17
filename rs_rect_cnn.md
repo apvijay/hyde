@@ -17,11 +17,14 @@ Honolulu, July 2017<br>
 Coming soon
 
 ## Data
-[Building Training Dataset](https://drive.google.com/file/d/0B7YA7kky_NEoMEYwbmVDRTlObVk/view?usp=drivesdk)
+[//]: <> [Building Training Dataset](https://drive.google.com/file/d/0B7YA7kky_NEoMEYwbmVDRTlObVk/view?usp=drivesdk)
+[Building Training Dataset](http://www.ee.iitm.ac.in/~ee11d035/building.tar.gz)
 
-[Face Training Dataset](https://drive.google.com/file/d/0B-BktWYrL0qcVlRIRVJEeW9LZ2s/view?usp=sharing)
+[//]: <> [Face Training Dataset](https://drive.google.com/file/d/0B-BktWYrL0qcVlRIRVJEeW9LZ2s/view?usp=sharing)
+[Face Training Dataset](http://www.ee.iitm.ac.in/~ee11d035/face.tar.gz)
 
-[Test Dataset (Building, Face, Synthetic Motion)](https://drive.google.com/file/d/0B7YA7kky_NEoUXhXX0NNRTdqUlU/view?usp=sharing)
+[//]: <> [Test Dataset (Building, Face, Synthetic Motion)](https://drive.google.com/file/d/0B7YA7kky_NEoUXhXX0NNRTdqUlU/view?usp=sharing)
+[Test Dataset (Building, Face, Synthetic Motion)](http://www.ee.iitm.ac.in/~ee11d035/cvpr17_test_dataset.zip)
 
 ## Results
 Given a single rolling shutter distorted image, our RowColCNN maps it to camera motion which is used to rectify the distortions.
