@@ -2,7 +2,7 @@
 layout: page
 title: Publications
 ---
-Collaborators: [Abhijith Punnappurath](http://www.ee.iitm.ac.in/~ee10d038), [A.N.Rajagopalan](http://www.ee.iitm.ac.in/~raju), [R.Aravind](http://www.ee.iitm.ac.in/user/aravind/), [Guna Seetharaman](http://www.cacs.louisiana.edu/~guna/), Sheetal Gupta, Yogesh Balaji
+Collaborators: [Abhijith Punnappurath](http://www.ee.iitm.ac.in/~ee10d038), [A.N.Rajagopalan](http://www.ee.iitm.ac.in/~raju), [R.Aravind](http://www.ee.iitm.ac.in/user/aravind/), [Guna Seetharaman](http://www.cacs.louisiana.edu/~guna/), Sheetal Gupta, [Yogesh Balaji](http://yogeshbalaji.github.io/)
 
 <!--
  <script src="http://bibbase.org/show?bib=apvijay.github.io/apvijay.bib&authorFirst=1&jsonp=1"></script> 
