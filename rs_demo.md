@@ -30,7 +30,7 @@ The <i>Warping</i> button will load the parameters and show the distorted output
   <output id="t_e_box_disp">1</output> Row exposure time
   <br >
   <input id="T_r_box" type="range" min="0" max="100" step="1" value="30">
-  <output id="T_r_box_disp">30</output> Top to bottom row delay time
+  <output id="T_r_box_disp">30</output> Top to bottom row delay
   <br >
   <input id="pose_per_t_e_box" type="range" min="1" max="20" step="1" value="5">
   <output id="pose_per_t_e_box_disp">5</output> Poses per row exposure
